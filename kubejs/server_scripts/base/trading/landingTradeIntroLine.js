@@ -239,113 +239,101 @@ const bnwRedstone = Agreement.constructor(company.bnw, "Redstone")
   ])
   .setRecurrence(2)
   .create()
-const bnwRedstone = getAgreement("bnwRedstone", {
-  paymentItems: [
-    
-  ],
-  requestedItems: [],
-  title: "Redstone from the red planet",
-  orderedAmount: 2,
-  company: "boards_and_wires",
-  message:
-    "Causing quite the stir there arnt you? Your horrific red planet was empty for eons, hope you know what you are doing landing there so spectacularly. Anyways we heard your planet is red because it's made of redstone, so we want to buy some",
-});
-const bnwRedstoneFixedRates = getAgreement("bnwRedstoneFixedRates", {
-  paymentItems: ["4x ae2:fluix_smart_cable"],
-  requestedItems: ["64x minecraft:redstone", "64x minecraft:redstone"],
-  title: "Fixed rates redstone > cables",
-  orderedAmount: 0,
-  company: "boards_and_wires",
-  message:
-    "Alright, you seem to be reliable, I believe it is time we made it official, lets start a fixed rates agreement. Your redstone is high quality, we make great cables, simple as that",
-});
-const bnwManasteel = getAgreement("bnwManasteel", {
-  paymentItems: [
-    "4x ae2:storage_monitor",
+
+const bnwRedstoneFixedRates = Agreement.constructor(company.bnw, "RedstoneFixedRates")
+  .setTask([
+    "64x minecraft:redstone",
+    "64x minecraft:redstone",
+  ])
+  .setReward([
+    "4x ae2:fluix_smart_cable",
+  ])
+  .create()
+
+const bnwManasteel = Agreement.constructor(company.bnw, "Manasteel")
+  .setTask([
+    "64x botania:manasteel_ingot",
+    "64x botania:manasteel_ingot",
+  ])
+  .setReward([
     Item.of(
       "ae2:energy_cell",
       1,
       "{internalCurrentPower:200000.0d,internalMaxPower:200000.0d}"
     ),
+    "4x ae2:storage_monitor",
     "8x minecraft:lever",
     "8x minecraft:gold_ingot",
     "ptdye:trading_transceiver",
-  ],
-  requestedItems: [
-    "64x botania:manasteel_ingot",
-    "64x botania:manasteel_ingot",
-  ],
-  title: "New material",
-  orderedAmount: 1,
-  company: "boards_and_wires",
-  message:
-    "Hello again, we are experimenting with new types of processors based on a more conductive material, if you can get us some we can continue this research, we can't pay a lot now, but if this works out we will require much more and our budget will be higher too if you catch my drift",
-});
-const bnwManasteelFixedRates = getAgreement("bnwManasteelFixedRates", {
-  paymentItems: ["8x ptdye:logic_device"],
-  requestedItems: [
+  ])
+  .setRecurrence(1)
+  .create()
+
+const bnwManasteelFixedRates = Agreement.constructor(company.bnw, "ManasteelFixedRates")
+  .setTask([
     "64x botania:manasteel_ingot",
     "32x botania:manasteel_ingot",
-  ],
-  title: "Fixed rates blue > cells",
-  orderedAmount: 0,
-  company: "boards_and_wires",
-  message:
-    "Well, well, seems that this blue stuff is working really well for us, we are going to need a lot more, lets fix our rates, we can supply you with energy cells, you can supply us with this new material",
-});
-const bnwQuartz = getAgreement("bnwQuartz", {
-  paymentItems: [
+  ])
+  .setReward([
+    "8x ptdye:logic_device",
+  ])
+  .create()
+
+const bnwQuartz = Agreement.constructor(company.bnw, "Quartz")
+  .setTask([
+    "64x minecraft:quartz",
+  ])
+  .setReward([
     "8x ptdye:smart_device",
     "8x minecraft:gold_ingot",
     "2x ptdye:logic_device",
-  ],
-  requestedItems: ["64x minecraft:quartz"],
-  title: "Need raw materials for silicon",
-  orderedAmount: 2,
-  company: "boards_and_wires",
-  message:
-    "We are great partners, you and me, its great to have a reliable source for once. Anyways, we are working on a new batch of silicon, we need some raw material, counting on you. Sidenote, ive talked about you to a few friends of mine, lets just say they are keeping an eye on you, the good kind of eye, dont worry",
-});
-const bnwCogs = getAgreement("bnwCogs", {
-  paymentItems: [
+  ])
+  .setReward(2)
+  .create()
+
+const bnwCogs = Agreement.constructor(company.bnw, "Cogs")
+  .setTask([
+    "64x create:cogwheel",
+  ])
+  .setReward([
     "8x ptdye:smart_device",
     "8x ae2:fluix_smart_cable",
     "5x ae2:storage_bus",
     "2x ae2:toggle_bus",
-  ],
-  requestedItems: ["64x create:cogwheel"],
-  title: "Assembly expansion",
-  orderedAmount: 2,
-  company: "boards_and_wires",
-  message:
-    "We are expanding our assembly line, we need some parts, we are willing to shell out a bit more for this one, we are in a hurry",
-});
-const bnwPolishedRoseQuartz = getAgreement("bnwPolishedRoseQuartz", {
-  paymentItems: [
+  ])
+  .setRecurrence(2)
+  .create()
+
+const bnwPolishedRoseQuartz = Agreement.constructor(company.bnw, "PolishedRoseQuartz")
+  .setTask([
+    "64x create:polished_rose_quartz"
+  ])
+  .setReward([
     "8x ae2:fluix_smart_cable",
     "4x create:mechanical_arm",
     "4x ae2:storage_bus",
     "4x ptdye:logic_device",
-  ],
-  requestedItems: ["64x create:polished_rose_quartz"],
-  title: "Assembly expansion",
-  orderedAmount: 1,
-  company: "boards_and_wires",
-  message:
-    "We are expanding our assembly line, we need some parts, we are willing to shell out a bit more for this one, we are in a hurry",
-});
-const qubeAngry = getAgreement("qubeAngry", {
-  paymentItems: ["minecraft:air"],
-  requestedItems: [bhbWheatFixedRates.item],
-  title: "Who do you think you are?!",
-  orderedAmount: 1,
-  company: "qube",
-  message:
-    "You sun of a squid, thought we woudnt find out? Who do you think you are? Waltzing over to our system and changing things around, this is unacceptable. Know this, if you want ANY trade from REAL companies around here give up this contract NOW and you will be forgiven, we may talk then",
-});
+  ])
+  .setRecurrence(1)
+  .create()
 
-const gbdSticks = getAgreement("gbdSticks", {
-  paymentItems: [
+const qubeAngry = Agreement.constructor(company.qube, "Angry")
+  .setTask([
+    bhbWheatFixedRates.item,
+  ])
+  .setReward([
+    "minecraft:air",
+  ])
+  .setRecurrence(1)
+  .create()
+
+const gbdSticks = Agreement.constructor(company.gbd, "Sticks")
+  .setTask([
+    "64x minecraft:stick",
+    "64x minecraft:stick",
+    "64x minecraft:stick",
+  ])
+  .setReward([
     Item.of(
       "supplementaries:cage",
       '{BlockEntityTag:{MobHolder:{EntityData:{AbsorptionAmount:0.0f,Air:300s,ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],Attributes:[{Base:1.0499999999999998d,Name:"minecraft:generic.movement_speed"},{Base:0.0d,Name:"forge:step_height_addition"}],Brain:{memories:{}},CanPickUpLoot:0b,CanUpdate:1b,DeathTime:0s,FallDistance:0.0f,FallFlying:0b,Fire:0s,ForgeData:{},HandDropChances:[0.085f,0.085f],HandItems:[{},{}],Health:10.0f,HurtByTimestamp:0,HurtTime:0s,Invulnerable:0b,LeftHanded:0b,Motion:[-0.020354872569441795d,8.017524960450828E-4d,-0.02206386998295784d],OnGround:0b,PersistenceRequired:1b,PortalCooldown:0,Pos:[0.5d,0.1876d,0.5d],Rotation:[0.0f,0.0f],id:"more_babies:squid"},Name:"Squid",Scale:0.6944444f,UUID:[I;488746606,1876312093,-1582293357,2139790907]}},RepairCost:0,display:{Name:\'{"text":"Kraken of the depths!","italic":"false"}\'}}'
@@ -359,108 +347,85 @@ const gbdSticks = getAgreement("gbdSticks", {
       '{BlockEntityTag:{MobHolder:{EntityData:{AbsorptionAmount:0.0f,Air:300s,ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],Attributes:[{Base:0.08d,Name:"forge:entity_gravity"},{Base:0.34500000000000003d,Name:"minecraft:generic.movement_speed"},{Base:0.0d,Name:"forge:step_height_addition"}],Brain:{memories:{}},CanPickUpLoot:0b,CanUpdate:1b,DeathTime:0s,FallDistance:0.0f,FallFlying:0b,Fire:0s,ForgeData:{},HandDropChances:[0.085f,0.085f],HandItems:[{},{}],Health:20.0f,HurtByTimestamp:0,HurtTime:0s,Invulnerable:0b,LeftHanded:0b,Motion:[0.0d,-0.0784000015258789d,0.0d],OnGround:1b,PersistenceRequired:1b,PortalCooldown:0,Pos:[0.5d,0.0626d,0.5d],Rotation:[0.0f,0.0f],id:"more_babies:blaze"},Name:"Blaze",Scale:0.4320988f,UUID:[I;321571076,-271104547,-1140807037,761034053]}},RepairCost:0,display:{Name:\'{"text":"Blazing MONSTROSITY of nether planet!","italic":"false"}\'}}'
     ),
     "ptdye:trading_transceiver",
-  ],
-  requestedItems: [
-    "64x minecraft:stick",
-    "64x minecraft:stick",
-    "64x minecraft:stick",
-  ],
-  title: "Interested in exotic creatures?",
-  orderedAmount: 1,
-  company: "galactic_beast_deliveries",
-  message:
-    "HELLO, fellow trade mesh body! We here at gbd supply THE BEST of BEASTS. We heard you are an amazing supplier and we currently need some incentive devices to help our employees work harder, nothing special mind you, and of course in return you will get to see some our most EXCLUSIVE AMAZING BEASTS! What do you say?",
-});
-const gdbLead = getAgreement("gdbLead", {
-  paymentItems: [
-    Item.of(
-      "supplementaries:cage",
-      '{BlockEntityTag:{MobHolder:{EntityData:{AbsorptionAmount:0.0f,Air:300s,ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],Attributes:[{Base:0.08d,Name:"forge:entity_gravity"},{Base:0.34500000000000003d,Name:"minecraft:generic.movement_speed"},{Base:0.0d,Name:"forge:step_height_addition"}],Brain:{memories:{}},CanPickUpLoot:0b,CanUpdate:1b,DeathTime:0s,FallDistance:0.0f,FallFlying:0b,Fire:0s,ForgeData:{},HandDropChances:[0.085f,0.085f],HandItems:[{},{}],Health:20.0f,HurtByTimestamp:0,HurtTime:0s,Invulnerable:0b,LeftHanded:0b,Motion:[0.0d,-0.0784000015258789d,0.0d],OnGround:1b,PersistenceRequired:1b,PortalCooldown:0,Pos:[0.5d,0.0626d,0.5d],Rotation:[0.0f,0.0f],id:"more_babies:blaze"},Name:"Blaze",Scale:0.4320988f,UUID:[I;321571076,-271104547,-1140807037,761034053]}},RepairCost:0,display:{Name:\'{"text":"Blazing MONSTROSITY of nether planet!","italic":"false"}\'}}'
-    ),
-  ],
-  requestedItems: ["32x minecraft:lead"],
-  title: "Leftovers from nether exhibition",
-  orderedAmount: 2,
-  company: "galactic_beast_deliveries",
-  message:
-    "HELLO, we are excited to offer you an incredible opportunity! We have a few leftover beasts from our nether exhibition, the highest quality stock around! We need a few leads for our future endeavors, lets strike a deal!",
-});
-const gdbLeadFriend = getAgreement("gdbLeadFriend", {
-  paymentItems: [
-    Item.of(
-      "supplementaries:cage",
-      '{BlockEntityTag:{MobHolder:{EntityData:{AbsorptionAmount:0.0f,Air:300s,ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],Attributes:[{Base:0.08d,Name:"forge:entity_gravity"},{Base:0.34500000000000003d,Name:"minecraft:generic.movement_speed"},{Base:0.0d,Name:"forge:step_height_addition"}],Brain:{memories:{}},CanPickUpLoot:0b,CanUpdate:1b,DeathTime:0s,FallDistance:0.0f,FallFlying:0b,Fire:0s,ForgeData:{},HandDropChances:[0.085f,0.085f],HandItems:[{},{}],Health:20.0f,HurtByTimestamp:0,HurtTime:0s,Invulnerable:0b,LeftHanded:0b,Motion:[0.0d,-0.0784000015258789d,0.0d],OnGround:1b,PersistenceRequired:1b,PortalCooldown:0,Pos:[0.5d,0.0626d,0.5d],Rotation:[0.0f,0.0f],id:"more_babies:blaze"},Name:"Blaze",Scale:0.4320988f,UUID:[I;321571076,-271104547,-1140807037,761034053]}},RepairCost:0,display:{Name:\'{"text":"Blazing MONSTROSITY of nether planet!","italic":"false"}\'}}'
-    ),
-  ],
-  requestedItems: ["32x minecraft:lead"],
-  title: "EXCLUSIVE Leftovers from nether exhibition",
-  orderedAmount: 6,
-  company: "galactic_beast_deliveries",
-  message:
-    "As our most VALUABLE customer, we are excited to offer you a once in a lifetime opportunity! We have a few leftover beasts from our nether exhibition, and we are willing to part with them for a small fee. What do you say?",
-});
+  ])
+  .setRecurrence(1)
+  .create()
 
-const sssHelmets = getAgreement("sssHelmets", {
-  paymentItems: ["air"],
-  requestedItems: ["16x botania:manasteel_helmet"],
-  title: "The syndicate needs YOU!",
-  orderedAmount: 2,
-  company: "stellar_sigil_syndicate",
-  message:
-    "We are the syndicate, we know you have heard of us, we are here to make the world a better place, and we want you to be a part of that! We need some helmets for our new recruits, if you help us out with this, you can enjoy the feeling of being a part of something bigger than yourself!",
-});
-const sssHelmetsFixedRates = getAgreement("sssHelmetsFixedRates", {
-  paymentItems: ["air"],
-  requestedItems: ["32x botania:manasteel_helmet"],
-  title: "Making the world a better place!",
-  orderedAmount: 0,
-  company: "stellar_sigil_syndicate",
-  message:
-    "Amazing! Its so great to have you with us brother, or sister, or whatever you are. We always require more recruits, and so we always require more helmets!",
-});
-const cccRawWhiteOld = getAgreement("cccRawWhiteOld", {
-  paymentItems: [
-    "8x minecraft:leather",
-    "8x supplementaries:copper_lantern",
-    "2x createdieselgenerators:basin_lid",
-    "2x create:weighted_ejector",
-  ],
-  requestedItems: ["64x minecraft:raw_iron", "16x minecraft:raw_iron"],
-  title: "Supplements required",
-  orderedAmount: 3,
-  company: "cosmic_cuisine_collective",
-  message:
-    "We have been receiving complaints from customers which we have not managed to deal with violently yet. Looking into a different approach. People are experiencing extreme deficiency in white minerals on our CCC Diet Plus program. We want to acquire some additives that can solve this.",
-});
-const cccRawWhite = getAgreement("cccRawWhite", {
-  paymentItems: [
+const gdbLead = Agreement.constructor(company.gbd, "Lead")
+  .setTask([
+    "32x minecraft:lead",
+  ])
+  .setReward([
+    Item.of(
+      "supplementaries:cage",
+      '{BlockEntityTag:{MobHolder:{EntityData:{AbsorptionAmount:0.0f,Air:300s,ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],Attributes:[{Base:0.08d,Name:"forge:entity_gravity"},{Base:0.34500000000000003d,Name:"minecraft:generic.movement_speed"},{Base:0.0d,Name:"forge:step_height_addition"}],Brain:{memories:{}},CanPickUpLoot:0b,CanUpdate:1b,DeathTime:0s,FallDistance:0.0f,FallFlying:0b,Fire:0s,ForgeData:{},HandDropChances:[0.085f,0.085f],HandItems:[{},{}],Health:20.0f,HurtByTimestamp:0,HurtTime:0s,Invulnerable:0b,LeftHanded:0b,Motion:[0.0d,-0.0784000015258789d,0.0d],OnGround:1b,PersistenceRequired:1b,PortalCooldown:0,Pos:[0.5d,0.0626d,0.5d],Rotation:[0.0f,0.0f],id:"more_babies:blaze"},Name:"Blaze",Scale:0.4320988f,UUID:[I;321571076,-271104547,-1140807037,761034053]}},RepairCost:0,display:{Name:\'{"text":"Blazing MONSTROSITY of nether planet!","italic":"false"}\'}}'
+    ),
+  ])
+  .setRecurrence(2)
+  .create()
+
+const gdbLeadFriend = Agreement.constructor(company.gdb, "LeadFriend")
+  .setTask([
+    "32x minecraft:lead",
+  ])
+  .setReward([
+    Item.of(
+      "supplementaries:cage",
+      '{BlockEntityTag:{MobHolder:{EntityData:{AbsorptionAmount:0.0f,Air:300s,ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],Attributes:[{Base:0.08d,Name:"forge:entity_gravity"},{Base:0.34500000000000003d,Name:"minecraft:generic.movement_speed"},{Base:0.0d,Name:"forge:step_height_addition"}],Brain:{memories:{}},CanPickUpLoot:0b,CanUpdate:1b,DeathTime:0s,FallDistance:0.0f,FallFlying:0b,Fire:0s,ForgeData:{},HandDropChances:[0.085f,0.085f],HandItems:[{},{}],Health:20.0f,HurtByTimestamp:0,HurtTime:0s,Invulnerable:0b,LeftHanded:0b,Motion:[0.0d,-0.0784000015258789d,0.0d],OnGround:1b,PersistenceRequired:1b,PortalCooldown:0,Pos:[0.5d,0.0626d,0.5d],Rotation:[0.0f,0.0f],id:"more_babies:blaze"},Name:"Blaze",Scale:0.4320988f,UUID:[I;321571076,-271104547,-1140807037,761034053]}},RepairCost:0,display:{Name:\'{"text":"Blazing MONSTROSITY of nether planet!","italic":"false"}\'}}'
+    ),
+  ])
+  .setRecurrence(6)
+  .create()
+
+const sssHelmets = Agreement.constructor(company.sss, "Helmets")
+  .setTask([
+    "16x botania:manasteel_helmet"
+  ])
+  .setReward([
+    "minecraft:air",
+  ])
+  .setRecurrence(2)
+  .create()
+
+const sssHelmetsFixedRates = Agreement.constructor(company.sss, "HelmetsFixedRates")
+  .setTask([
+    "32x botania:manasteel_helmet"
+  ])
+  .setReward([
+    "minecraft:air",
+  ])
+  .create()
+
+// cccRawWhiteOld
+const cccRawWhite = Agreement.constructor(company.ccc, "RawWhite")
+  .setTask([
+    "64x minecraft:raw_iron",
+    "16x minecraft:raw_iron",
+  ])
+  .setReward(
     "8x minecraft:leather",
     "8x supplementaries:copper_lantern",
     "8x slime_ball",
     "8x create:cogwheel",
     "2x createdieselgenerators:basin_lid",
     "2x create:weighted_ejector",
-  ],
-  requestedItems: ["64x minecraft:raw_iron", "16x minecraft:raw_iron"],
-  title: "Supplements required",
-  orderedAmount: 3,
-  company: "cosmic_cuisine_collective",
-  message:
-    "We have been receiving complaints from customers which we have not managed to deal with violently yet. Looking into a different approach. People are experiencing extreme deficiency in white minerals on our CCC Diet Plus program. We want to acquire some additives that can solve this.",
-});
-const cccIronBars = getAgreement("cccIronBars", {
-  paymentItems: [
-    "16x minecraft:leather",
+  )
+  .setRecurrence(3)
+  .create()
+
+const cccIronBars = Agreement.constructor(company.ccc, "IronBars")
+  .setTask([
+    "64x minecraft:iron_bars",
+    "64x minecraft:iron_bars",
+  ])
+  .setReward([
     Item.of("botania:mana_tablet", "{mana:10000}"),
-  ],
-  requestedItems: ["64x minecraft:iron_bars", "64x minecraft:iron_bars"],
-  title: "Building cells, supplies needed URGENTLY",
-  orderedAmount: 4,
-  company: "cosmic_cuisine_collective",
-  message:
-    "We are currently dealing with multiple class action lawsuits about poisonings. We have apprehended a few of those scoundrels and are currently in need of new holding cells, fast",
-});
-global.starterDeals = [cccRawWhite, mlcSand, bhbCheese, bcfDave];
+    "16x minecraft:leather",
+  ])
+  .setRecurrence(4)
+  .create()
+
+global.starterDeals = [cccRawWhite, mlcSand, bhbCheese];
 tradeBranch([bcfPlates2, bnwRedstone], [bcfPlates]);
 tradeBranch([cccIronBars, bcfPlates], [cccRawWhite]);
 tradeBranch([cccIronBars, bcfPlates], [cccRawWhiteOld]);

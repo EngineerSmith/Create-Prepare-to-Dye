@@ -6,7 +6,7 @@ const Agreement = {
         ordered: 0
       }, Agreement)
   },
-  
+
   setTask: function(itemStack) {
     this.taskItems = itemStackToNbt(itemStack)
     return this

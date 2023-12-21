@@ -82,6 +82,36 @@
 
     "agreement.ptdye.bnwRedstone.title": "Redstone from the red planet",
     "agreement.ptdye.bnwRedstone.message": "Causing quite the stir there aren't you? Your horrific red planet was empty for eons, hope you know what you are doing landing there so spectacularly. Anyways we heard your planet is red because it's made of redstone, so we want to buy some.",
+    "agreement.ptdye.bnwRedstoneFixedRates.title": "Fixed rates redstone > cables",
+    "agreement.ptdye.bnwRedstoneFixedRates.message": "Alright, you seem to be reliable, I believe it is time we made it official. Lets start a fixed rates agreement. Your redstone is high quality, we make great cables, simple as that.",
+    "agreement.ptdye.bnwManasteel.title": "New material",
+    "agreement.ptdye.bnwManasteel.message": "Hello again, we are experimenting with new types of processors based on a more conductive material, if you can get us some we can continue this research, we can't pay a lot now, but if this works out we will require much more and our budget will be higher too if you catch my drift.",
+    "agreement.ptdye.bnwManasteelFixedRates.title": "Fixed rates blue > cells",
+    "agreement.ptdye.bnwManasteelFixedRates.message": "Well, well, seems that this blue stuff is working really well for us, we are going to need a lot more, lets fix our rates, we can supply you with energy cells, you can supply us with this new material.",
+    "agreement.ptdye.bnwQuartz.title": "Need raw materials for silicon",
+    "agreement.ptdye.bnwQuartz.message": "We are great partners, you and me, its great to have a reliable source for once. Anyways, we are working on a new batch of silicon, we need some raw material, counting on you. Side note, I've talked about you to a few friends of mine, lets just say they are keeping an eye on you, the good kind of eye, don't worry.",
+    "agreement.ptdye.bnwPolishedRoseQuartz.title": "Assembly expansion",
+    "agreement.ptdye.bnwPolishedRoseQuartz.message": "We are expanding our assembly line, we need some parts, we are willing to shell out a bit more for this one, we are in a hurry.",
+
+    "agreement.ptdye.qubeAngry.title": "Who do you think you are?!",
+    "agreement.ptdye.qubeAngry.message": "You sun of a squid, thought we wouldn't find out? Who do you think you are? Waltzing over to our system and changing things around, this is unacceptable. Know this, if you want ANY trade from REAL companies around here give up this contract NOW and you will be forgiven, we may talk then.",
+
+    "agreement.ptdye.gbdSticks.title": "Interested in exotic creatures?",
+    "agreement.ptdye.gbdSticks.message": "HELLO, fellow trade mesh body! We here at gbd supply THE BEST of BEASTS. We heard you are an amazing supplier and we currently need some incentive devices to help our employees work harder, nothing special mind you, and of course in return you will get to see some our most EXCLUSIVE AMAZING BEASTS! What do you say?",
+    "agreement.ptdye.gdbLead.title": "Leftovers from nether exhibition",
+    "agreement.ptdye.gdbLead.message": "HELLO, we are excited to offer you an incredible opportunity! We have a few leftover beasts from our nether exhibition, the highest quality stock around! We need a few leads for our future endeavors, lets strike a deal!",
+    "agreement.ptdye.gdbLeadFriend.title": "EXCLUSIVE Leftovers from nether exhibition",
+    "agreement.ptdye.gdbLeadFriend.message": "As our most VALUABLE customer, we are excited to offer you a once in a lifetime opportunity! We have a few leftover beasts from our nether exhibition, and we are willing to part with them for a small fee. What do you say?",
+
+    "agreement.ptdye.sssHelmets.title": "The syndicate needs YOU!",
+    "agreement.ptdye.sssHelmets.message": "We are the syndicate, we know you have heard of us, we are here to make the world a better place, and we want you to be a part of that! We need some helmets for our new recruits, if you help us out with this, you can enjoy the feeling of being a part of something bigger than yourself!",
+    "agreement.ptdye.sssHelmetsFixedRates.title": "Making the world a better place!",
+    "agreement.ptdye.sssHelmetsFixedRates.message": "Amazing! Its so great to have you with us brother, or sister, or whatever you are. We always require more recruits, and so we always require more helmets!",
+
+    "agreement.ptdye.cccRawWhite.title": "Supplements required",
+    "agreement.ptdye.cccRawWhite.message": "We have been receiving complaints from customers which we have not managed to deal with violently yet. Looking into a different approach. People are experiencing extreme deficiency in white minerals on our CCC Diet Plus program. We want to acquire some additives that can solve this.",
+    "agreement.ptdye.cccIronBars.title": "Building cells, supplies needed URGENTLY",
+    "agreement.ptdye.cccIronBars.message": "We are currently dealing with multiple class action lawsuits about poisonings. We have apprehended a few of those scoundrels and are currently in need of new holding cells, fast.",
 
     "item.ptdye.hammer": "Hammer",
     "item.ptdye.hammer.tooltip.summary": "Turns blocks back into device parts quickly!",
