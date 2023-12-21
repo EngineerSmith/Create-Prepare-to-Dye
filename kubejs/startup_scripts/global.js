@@ -2,4 +2,4 @@ global.colors = ['white', 'orange', 'light_blue', 'yellow', 'lime', 'pink', 'gra
 global.itemsToHide = []
 global.categoriesToHide = []
 global.itemsToRemove = []
-
+global.company = []

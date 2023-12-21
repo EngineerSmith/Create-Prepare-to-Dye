@@ -8,229 +8,227 @@
 //     Item.of("minecraft:stick", 2, "{Damage:0}").withName("Trading Transceiver")
 //   )
 // );
-const bcfPlates = getAgreement("bcfPlates", {
-  paymentItems: [
+
+let company = global.company
+
+const bcfPlates = Agreement.constructor(company.bcf, "Plates")
+  .setTask([ // This is the cost of the trade
+    "64x create:iron_sheet",
+  ])
+  .setReward([ // This is the result of the trade
     "32x minecraft:andesite",
     "10x create:cogwheel",
     "8x create:belt_connector",
-  ], // This is the result of the trade
-  requestedItems: ["64x create:iron_sheet"], // This is the cost of the trade
-  title: "We want plates", // This is the title of the trade
-  orderedAmount: 3, // This is how many times the trade is done, until the deal is considered complete
-  company: "bobs_construction_fleet", // This is the name of the company
-  message:
-    "Hello, I see you are new here in the trading mesh, doesnt matter much, Im from BCF and we want to contract some white plates, willing to pay too", // This is the description of the trade
-});
-const bcfPlates2 = getAgreement("bcfPlates2", {
-  paymentItems: [
+  ])
+  .setRecurrence(3) // This is how many times the trade is done, until the deal is complete
+  .create()
+
+const bcfPlates2 = Agreement.constructor(company.bcf, "Plates2")
+  .setTask([
+    "64x create:iron_sheet",
+    "64x create:iron_sheet",
+    "64x create:iron_sheet",
+  ])
+  .setReward([
     "16x minecraft:andesite",
     "16x ptdye:sealed_device",
     "10x ae2:flawed_budding_quartz",
     "16x ptdye:mechanical_device",
     "16x ptdye:smart_device",
     "create:super_glue",
-  ],
-  requestedItems: [
+  ])
+  .setRecurrence(2)
+  .create()
+
+const bfcPlatesPermanent = Agreement.constructor(company.bcf, "PlatesPermanent")
+  .setTask([
     "64x create:iron_sheet",
     "64x create:iron_sheet",
-    "64x create:iron_sheet",
-  ],
-  title: "We want more plates",
-  orderedAmount: 2,
-  company: "bobs_construction_fleet",
-  message:
-    "Hello, you did well on you last contract, good job. We require more plates, this time our volume is bigger, and so is the payment",
-});
-const bfcPlatesPermanent = getAgreement("bfcPlatesPermanent", {
-  paymentItems: ["64x andesite", "32x minecraft:andesite"],
-  requestedItems: ["64x create:iron_sheet", "64x create:iron_sheet"],
-  title: "Plates, fixed rates",
-  orderedAmount: 0,
-  company: "bobs_construction_fleet",
-  message:
-    "You have done well, I forsee a long and profitable relationship between us. Now that we have setup a new factory on Zora with the help of mlc, we want fixed rates with you, if you are up for it.",
-});
-const bfcPickaxes = getAgreement("bfcPickaxes", {
-  paymentItems: ["32x create:track", "8x ptdye:locomotive_device"],
-  requestedItems: ["16x #forge:tools/pickaxes"],
-  title: "Tools needed",
-  orderedAmount: 2,
-  company: "bobs_construction_fleet",
-  message:
-    "Planing to do some work for some computer company on Zora, we need some tools",
-});
-const bfcHelmets = getAgreement("bfcHelmets", {
-  paymentItems: ["16x ptdye:locomotive_device", "16x create:track"],
-  requestedItems: ["16x minecraft:iron_helmet"],
-  title: "Hardhats",
-  orderedAmount: 2,
-  company: "bobs_construction_fleet",
-  message:
-    "We also need some hardhats for our upcoming contract, less urgent though so take your time",
-});
-// const bcfPlates3 = getAgreement(
-const mlcEndstoneFixed = getAgreement("mlcEndstoneFixed", {
-  paymentItems: ["16x quark:chorus_fruit_block"],
-  requestedItems: ["32x minecraft:end_stone"],
-  title: "Building a moon, materials needed",
-  orderedAmount: 0,
-  company: "magical_landscaping_co",
-  message:
-    "We have a long term project going, building a moon for a rich client of ours, we need a lot of moonstone, we can supply you with some chorus fruit in return",
-});
-const mlcSand = getAgreement("mlcSand", {
-  paymentItems: [
+  ])
+  .setReward([
+    "64x andesite",
+    "32x minecraft:andesite",
+  ])
+  .create()
+
+const bfcPickaxes = Agreement.constructor(company.bfc, "Pickaxes")
+  .setTask([
+    "16x #forge:tools/pickaxes",
+  ])
+  .setReward([
+    "32x create:track",
+    "8x ptdye:locomotive_device",
+  ])
+  .setRecurrence(2)
+  .create()
+
+const bfcHelmets = Agreement.constructor(company.bfc, "Helmets")
+  .setTask([
+    "16x minecraft:iron_helmet",
+  ])
+  .setReward([
+    "16x ptdye:locomotive_device",
+    "16x create:track",
+  ])
+  .setRecurrence(2)
+  .create()
+
+const mlcEndstoneFixed = Agreement.constructor(company.mlc, "EndstoneFixed")
+  .setTask([
+    "32x minecraft:end_stone",
+  ])
+  .setReward([
+    "16x quark:chorus_fruit_block",
+  ])
+  .create()
+
+const mlcSand = Agreement.constructor(company.mlc, "Sand")
+  .setTask([
+    "64x minecraft:white_concrete_powder",
+    "64x minecraft:white_concrete_powder",
+    "64x minecraft:white_concrete_powder",
+    "64x minecraft:white_concrete_powder",
+    "64x minecraft:white_concrete_powder",
+  ])
+  .setReward([
     // "botania:manasteel_shovel",
     Item.of("minecraft:golden_pickaxe", 2, "{Damage:0}"),
     "2x botania:hopperhock",
     "2x botania:mana_pool",
     "dirt",
     "botania:mana_spreader",
-  ],
-  requestedItems: [
-    "64x minecraft:white_concrete_powder",
-    "64x minecraft:white_concrete_powder",
-    "64x minecraft:white_concrete_powder",
-    "64x minecraft:white_concrete_powder",
-    "64x minecraft:white_concrete_powder",
-  ],
-  title: "Your Sand – Our Beaches?",
-  orderedAmount: 2,
-  company: "magical_landscaping_co",
-  message:
-    "Hey there, new kid. Heard youre the fresh grain on the block. We are in the biz of building billionaire beachfronts. So, heres the scoop: we need sand. Lots of it. Pristine, white, untouched, like your manufacturing rep. Lets make a deal that will put your sands on the lunar map. Whaddya say?",
-});
-const mlcSand2 = getAgreement("mlcSand2", {
-  paymentItems: [
+  ])
+  .setRecurrence(2)
+  .create()
+
+const mlcSand2 = Agreement.constructor(company.mlc, "Sand2")
+  .setTask([
+    "64x minecraft:sand",
+    "64x minecraft:sand",
+    "64x minecraft:sand",
+    "64x minecraft:sand",
+    "64x minecraft:sand",
+  ])
+  .setReward([
     Item.of("minecraft:golden_pickaxe", 4, "{Damage:0}"),
     "32x dirt",
     "16x supplementaries:jar",
     "8x ptdye:smart_device",
     "ptdye:trading_transceiver",
-  ],
-  requestedItems: [
+  ])
+  .setRecurrence(3)
+  .create()
+
+const mlcSandFixed = Agreement.constructor(company.mlc, "SandFixed")
+  .setTask([
     "64x minecraft:sand",
     "64x minecraft:sand",
     "64x minecraft:sand",
     "64x minecraft:sand",
-    "64x minecraft:sand",
-  ],
-  title: "More sand!",
-  orderedAmount: 3,
-  company: "magical_landscaping_co",
-  message:
-    "Your sand is smooth like no other! We want to buy MORE of it, not white this time, regular clean sand, and a bunch more, lets get this going shall we?",
-});
-const mlcSandFixed = getAgreement("mlcSandFixed", {
-  paymentItems: [
+  ])
+  .setReward([
     Item.of("minecraft:golden_pickaxe", 16, "{Damage:0}"),
     "64x minecraft:cobblestone",
-  ],
-  requestedItems: [
-    "64x minecraft:sand",
-    "64x minecraft:sand",
-    "64x minecraft:sand",
-    "64x minecraft:sand",
-  ],
-  title: "Lets seal the deal on that beautiful sand",
-  orderedAmount: 5,
-  company: "magical_landscaping_co",
-  message:
-    "Alright this is a done deal. Lets have a relationship you and I, lets start a constant thing, lets tell the family. First lets make sure we got solid lines right? Consider us partners forever, you keep sending us your golden dust and we are happy bees",
-});
-const bhbCheese = getAgreement("bhbCheese", {
-  paymentItems: [
+  ])
+  .setRecurrence(5)
+  .create()
+
+const bhbCheese = Agreement.constructor(company.bhb, "Cheese")
+  .setTask([
+    "32x kubejs:fermented_blob",
+  ])
+  .setReward([
     "1x botania:gourmaryllis",
     "1x minecraft:water_bucket",
     "1x minecraft:water_bucket",
     "8x minecraft:sugar_cane",
-  ],
-  requestedItems: ["32x kubejs:fermented_blob"],
-  title: "Ingredients needed",
-  orderedAmount: 3,
-  company: "black_hole_bagels_llc",
-  message:
-    "Hello, we are a new company that is trying to make a new recipe for bagels, we need some ingredients, willing to pay, simple as that",
-});
-const bhbCheeseFixed = getAgreement("bhbCheeseFixed", {
-  paymentItems: ["32x supplementaries:soap"],
-  requestedItems: ["64x kubejs:fermented_blob"],
-  title: "Lets make some bagels",
-  orderedAmount: 0,
-  company: "black_hole_bagels_llc",
-  message:
-    "Alright, yup, this works. I want more of that cheesy stuff, a lot more. Lets make this a regular thing",
-});
-const bhbWheat = getAgreement("bhbWheat", {
-  paymentItems: ["32x botania:livingwood_log", "water_bucket"],
-  requestedItems: ["64x wheat"],
-  title: "Clean wheat needed",
-  orderedAmount: 2,
-  company: "black_hole_bagels_llc",
-  message:
-    "Currently we are getting our wheat from Qube, we are not 100% where they are getting it but it always comes stained with blood, we have a line dedicated to cleaning just because of that. If you can supply clean wheat, I think we can be great friends",
-});
+  ])
+  .setRecurrence(3)
+  .create()
 
-const wscAxes = getAgreement("wscAxes", {
-  paymentItems: [
+const bhbCheeseFixed = Agreement.constructor(company.bhb, "CheeseFixed")
+  .setTask([
+    "64x kubejs:fermented_blob",
+  ])
+  .setReward([
+    "32x supplementaries:soap",
+  ])
+  .create()
+
+const bhbWheat = Agreement.constructor(company.bhb, "Wheat")
+  .setTask([
+    "64x wheat",
+  ])
+  .setReward([
+    "32x botania:livingwood_log",
+    "water_bucket",
+  ])
+  .setRecurrence(2)
+  .create()
+
+const bhbWheatFixedRates = Agreement.constructor(company.bhb, "WheatFixedRates")
+  .setTask([
+    "64x wheat",
+    "64x wheat",
+  ])
+  .setReward([
+    "32x clay",
+  ])
+  .create()
+
+const bhbFurnaces = Agreement.constructor(company.bhb, "Furnaces")
+  .setTask([
+    "64x minecraft:furnace"
+  ])
+  .setReward([
+    "8x minecraft:clay",
+    "8x copper_ingot",
+    "8x botania:manasteel_ingot",
+  ])
+  .setRecurrence(2)
+  .create()
+
+const wscAxes = Agreement.constructor(company.wsc, "Axes")
+  .setTask([
+    "16x #forge:tools/axes",
+  ])
+  .setReward([
     "16x minecraft:oak_log",
     "10x storagedrawers:oak_full_drawers_1",
     "2x minecraft:chest",
     "ptdye:trading_transceiver",
-  ],
-  requestedItems: ["16x #forge:tools/axes"],
-  title: "A new season is upon us, Tools needed",
-  orderedAmount: 1,
-  company: "wood_strike_and_co",
-  message:
-    "Hey there, hoser. Were the fun folks at WSC busier than a beaver in a woodpile! Our tools are top-notch, but we're short a few axes. Need more to chop-chop as fast as a moose on a ski slope. Can you help us out?",
-});
-const wscBread = getAgreement("wscBread", {
-  paymentItems: [
+  ])
+  .setRecurrence(1)
+  .create()
+
+const wscBread = Agreement.constructor(company.wsc, "Bread")
+  .setTask([
+    "64x minecraft:bread",
+  ])
+  .setReward([
     "8x minecraft:birch_log",
     "minecraft:chest",
     "4x storagedrawers:oak_full_drawers_1",
-  ],
-  requestedItems: ["64x minecraft:bread"],
-  title: "Food needed for the workers",
-  orderedAmount: 2,
-  company: "wood_strike_and_co",
-  message:
-    "Its WSC here. After any long day among the pines, our teams as hungry as a bear in spring! Were on the hunt for some good, hearty food to fill our bellies and fuel our saws. Barring that, bread would do as well",
-});
-const wscBreadAndAxesFixed = getAgreement("wscBreadAndAxesFixed", {
-  paymentItems: ["8x minecraft:birch_log"],
-  requestedItems: ["64x minecraft:bread", "16x #forge:tools/axes"],
-  title: "Food and tools, fixed rates",
-  orderedAmount: 0,
-  company: "wood_strike_and_co",
-  message:
-    "We are reaching out for a bit of a deal. We're looking to set up a fixed rate for two essentials: good, sturdy axes and plenty of bread to keep our crew well-fed. We're thinking long-term partnership here, with regular orders. Let's talk numbers and see if we can make this work for both of us. Looking forward to a fruitful collaboration",
-});
-const bhbFurnaces = getAgreement("bhbFurnaces", {
-  paymentItems: [
-    "8x minecraft:clay",
-    "8x copper_ingot",
-    "8x botania:manasteel_ingot",
-  ],
-  requestedItems: ["64x minecraft:furnace"],
-  title: "Expanding our presence on Zora",
-  orderedAmount: 2,
-  company: "black_hole_bagels_llc",
-  message:
-    "We are expanding our presence on Zora, we need some furnaces, you have proven yourself so far, lets see if we can work some fixed rates for your wheat after this",
-});
-const bhbWheatFixedRates = getAgreement("bhbWheatFixedRates", {
-  paymentItems: ["32x clay"],
-  requestedItems: ["64x wheat", "64x wheat"],
-  title: "Clean wheat fixed rates",
-  orderedAmount: 0,
-  company: "black_hole_bagels_llc",
-  message:
-    "Alright, you are our new main source now, dont fail us, and dont worry about Qube, we wont tell them",
-});
-const bnwRedstone = getAgreement("bnwRedstone", {
-  paymentItems: [
+  ])
+  .setRecurrence(2)
+  .create()
+
+const wscBreadAndAxesFixed = Agreement.constructor(company.wsc, "BreadAndAxesFixed")
+  .setTask([
+    "64x minecraft:bread",
+    "16x #forge:tools/axes",
+  ])
+  .setReward([
+    "8x minecraft:birch_log",
+  ])
+  .create()
+
+const bnwRedstone = Agreement.constructor(company.bnw, "Redstone")
+  .setTask([
+    "64x minecraft:redstone",
+    "64x minecraft:redstone",
+  ])
+  .setReward([
     Item.of(
       "ae2:energy_cell",
       2,
@@ -238,8 +236,14 @@ const bnwRedstone = getAgreement("bnwRedstone", {
     ),
     "8x ae2:fluix_smart_cable",
     "4x ptdye:logic_device",
+  ])
+  .setRecurrence(2)
+  .create()
+const bnwRedstone = getAgreement("bnwRedstone", {
+  paymentItems: [
+    
   ],
-  requestedItems: ["64x minecraft:redstone", "64x minecraft:redstone"],
+  requestedItems: [],
   title: "Redstone from the red planet",
   orderedAmount: 2,
   company: "boards_and_wires",
@@ -456,7 +460,7 @@ const cccIronBars = getAgreement("cccIronBars", {
   message:
     "We are currently dealing with multiple class action lawsuits about poisonings. We have apprehended a few of those scoundrels and are currently in need of new holding cells, fast",
 });
-global.starterDeals = [cccRawWhite, mlcSand, bhbCheese];
+global.starterDeals = [cccRawWhite, mlcSand, bhbCheese, bcfDave];
 tradeBranch([bcfPlates2, bnwRedstone], [bcfPlates]);
 tradeBranch([cccIronBars, bcfPlates], [cccRawWhite]);
 tradeBranch([cccIronBars, bcfPlates], [cccRawWhiteOld]);

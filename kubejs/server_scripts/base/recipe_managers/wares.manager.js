@@ -64,28 +64,28 @@ function getAgreement(agreementID, {
 
   let agreementObj = {
     item: Item.of("wares:delivery_agreement", {
-      id: agreementID,
-      ordered: orderedAmount,
-      message: NBT.stringTag(`{"text":"${message}"}`),
-      seal: seal,
-      buyerName: { color: "#409D9B", text: companyTitle },
-      paymentItems: simple(paymentItems),
-      requestedItems: simple(requestedItems),
-      title: NBT.stringTag(`{"text":"${title}"}`),
-    }).withName(Text.gold(companyTitle + " - " + title).italic(false)),
+        id: agreementID,
+        ordered: orderedAmount,
+        message: NBT.stringTag(`{"text":"${message}"}`),
+        seal: seal,
+        buyerName: { color: "#409D9B", text: companyTitle },
+        paymentItems: simple(paymentItems),
+        requestedItems: simple(requestedItems),
+        title: NBT.stringTag(`{"text":"${title}"}`),
+      }).withName(Text.gold(companyTitle + " - " + title).italic(false)),
 
     completedItem: Item.of("wares:completed_delivery_agreement", {
-      id: agreementID,
-      ordered: NBT.intTag(orderedAmount),
-      buyerName: { color: "#409D9B", text: companyTitle },
-      delivered: NBT.intTag(orderedAmount),
-      isCompleted: NBT.b(1),
-      message: NBT.stringTag(`{"text":"${message}"}`),
-      seal: seal,
-      paymentItems: simple(paymentItems),
-      requestedItems: simple(requestedItems),
-      title: NBT.stringTag(`{"text":"${title}"}`),
-    }).withName(Text.gold(companyTitle + " - " + title).italic(false)),
+        id: agreementID,
+        ordered: NBT.intTag(orderedAmount),
+        buyerName: { color: "#409D9B", text: companyTitle },
+        delivered: NBT.intTag(orderedAmount),
+        isCompleted: NBT.b(1),
+        message: NBT.stringTag(`{"text":"${message}"}`),
+        seal: seal,
+        paymentItems: simple(paymentItems),
+        requestedItems: simple(requestedItems),
+        title: NBT.stringTag(`{"text":"${title}"}`),
+      }).withName(Text.gold(companyTitle + " - " + title).italic(false)),
   };
   global.allAgreements = global.allAgreements
     .filter((f) => f.nbt !== agreementObj.item.nbt)
