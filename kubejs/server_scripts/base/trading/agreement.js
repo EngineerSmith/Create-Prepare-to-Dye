@@ -1,3 +1,5 @@
+//priority:180
+
 const Agreement = {
   constructor: function(company, agreementName) {
     return Object.assign({
@@ -24,6 +26,10 @@ const Agreement = {
     return this
   },
 
+  setParent: function(...parents) {
+    this.parents = parents
+  },
+
   create: function() {
     if (this.taskItems === null || this.rewardItems === null)
       console.error("Can't create agreement without task or reward items")
@@ -35,7 +41,7 @@ const Agreement = {
       requestedItems: this.taskItems,
       paymentItems: this.rewardItems,
       // Company Info
-      buyerName:  `${Text.translate(`company.ptdye.${this.company.abbreviation}`)}", "color":"${this.company.color}}`,
+      buyerName: `{"text":"${Text.translate(`company.ptdye.${this.company.abbreviation}`)}", "color":"#409D9"}`,
       title: `{"text":"${Text.translate(`agreement.ptdye.${this.agreementId}.title`)}"}`,
       message: `{"text":"${Text.translate(`agreement.ptdye.${this.agreementId}.message`)}"}`,
       seal: this.company.seal
@@ -59,7 +65,10 @@ const Agreement = {
         .filter((f) => f.nbt !== completedAgreement.nbt)
         .concat([completedAgreement])
 
-    return { item: incompleteAgreement, completedItem: completedAgreement }
+    this.item = incompleteAgreement
+    this.completedItem = completedAgreement
+
+    return this
   }
 }
 
