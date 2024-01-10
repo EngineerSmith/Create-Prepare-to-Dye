@@ -5,6 +5,8 @@ const parrotAnimation_cursorPose = parrotAnimation.FaceCursorPose
 
 const textSound = "block.enchantment_table.use"
 
+const parrotOffset = 0
+
 let lastScene_text = null, lastTicks = null, lastPosition = null
 function factory_text(string, scene, ticks, position) {
   if (!scene) {
@@ -76,9 +78,9 @@ Ponder.registry((event) => {
       scene.showBasePlate()
       scene.idle(10)
       
-      let pos = [1.5, 1, 1.5]
+      let pos = [1.5, 1+parrotOffset, 1.5]
       let textPos = pos.slice() //copy pos array
-      textPos[1] += 1
+      textPos[1] += 1-parrotOffset
       let parrot = scene.special.createBirb(pos, () => new parrotAnimation_stillPose())
       factory_text_idle("Thank you for purchasing the AUTOMATON CQ1503", scene, 60, textPos)
       factory_text_idle("We hope it brings you many years of good use!")
@@ -141,7 +143,7 @@ Ponder.registry((event) => {
       scene.showStructure()
       scene.idle(10)
       scene.special.movePointOfInterest([0, 4, 4])
-      let parrot = scene.special.createBirb([4.5, 4, 0.5], () => new parrotAnimation_poiPose())
+      let parrot = scene.special.createBirb([4.5, 4+parrotOffset, 0.5], () => new parrotAnimation_poiPose())
       factory_text_idle("Introducing Triple Jump", scene, 30, [4.5, 5, 0.5])
       scene.addKeyframe()
       // smooth jump otherwise it looks like zigzagging in the air
@@ -176,7 +178,7 @@ Ponder.registry((event) => {
       scene.idle(3)
       scene.addLazyKeyframe()
       
-      let parrot2 = scene.special.createBirb([3.8, 1, 0.5], () => new parrotAnimation_poiPose())
+      let parrot2 = scene.special.createBirb([3.8, 1+parrotOffset, 0.5], () => new parrotAnimation_poiPose())
       scene.idle(10)
       factory_parrotMove([ 0, 0.40, 0], 2, 1, scene, parrot2) // @  2 ticks
       jumpCloud([3.8, 1, 0.5], scene) // sleeps 1
@@ -215,7 +217,7 @@ Ponder.registry((event) => {
       scene.showBasePlate()
       scene.idle(10)
       scene.special.movePointOfInterest([3, 1, 2])
-      scene.special.createBirb([1.5, 1, 2.5], () => new parrotAnimation_poiPose)
+      scene.special.createBirb([1.5, 1+parrotOffset, 2.5], () => new parrotAnimation_poiPose)
 
       factory_text("The automaton comes with it's own Personal Assembler!", scene, 60, [1.5, 2, 2.5])
       scene.idle(15)
@@ -270,7 +272,7 @@ Ponder.registry((event) => {
     //   scene.showBasePlate()
     //   scene.idle(10)
     //   scene.special.movePointOfInterest([0,1,0])
-    //   let parrot = scene.special.createBirb([2.5,1,2.5], () => new parrotAnimation_poiPose())
+    //   let parrot = scene.special.createBirb([2.5,1+parrotOffset,2.5], () => new parrotAnimation_poiPose())
     //   scene.idle(10)
     //   factory_text_idle("Powered by our revolutionary AI systems that redefines the possibilities...", scene, 60, [2.5,2,2.5])
     //   //factory_text_idle("Let us look at what the automaton would see", scene, 40, [2.5, 2, 2.5])
