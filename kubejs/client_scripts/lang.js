@@ -15,12 +15,26 @@ ClientEvents.lang("en_us", (event) => {
     console.info(`adding ${tooltip} to ${item}`);
     event.add(`${item.getDescriptionId()}.tooltip.summary`, tooltip);
   });
+  let infoPages = {};
   Ingredient.all.itemIds.forEach((id) => {
     $TooltipModifier.REGISTRY.registerDeferred(
       id,
       (item) => new $ItemDescription(item, $Palette.STANDARD_CREATE)
     );
+    let key = Item.of(id).descriptionId+'.tooltip.summary'
+    if ((Text.translate(key).string!=key)){
+      infoPages[id] = {
+        type: "emi:info",
+        stacks: [
+          `item:${id}`
+        ],
+        text: key
+      }
+    }
   });
+  for (let [key, value] of Object.entries(infoPages)) {
+    JsonIO.write(`kubejs/assets/emi/recipe/additions/generated.${key.replace(':','.')}.json`, value);
+  }
 });
 ClientEvents.lang("en_us", (event) => {
   //print all translation keys
@@ -57,11 +71,11 @@ function genMissingTranslationsIndex(lang) {
         delete engLangFile[key]; //remove all keys that are already translated
       });
     }
-    all[namespace] = engLangFile;
+    all[namespace] = sortObjectByKey(engLangFile);
   }
   JsonIO.write(
     `kubejs/translation_tools/missing_translations/${lang}.missing.json`,
-    all
+    sortObjectByKey(all)
   );
 }
 JsonIO.read("kubejs/translation_tools/supported_langs.json").langs.forEach(
@@ -70,4 +84,3 @@ JsonIO.read("kubejs/translation_tools/supported_langs.json").langs.forEach(
     ClientEvents.lang(lang, (event) => genMissingTranslationsIndex(event.lang));
   }
 );
-

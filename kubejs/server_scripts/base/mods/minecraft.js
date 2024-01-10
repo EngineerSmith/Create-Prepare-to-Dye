@@ -1,5 +1,16 @@
 if (feature("Paper recipes")) {
-  replaceShaped("paper", "###", { "#": "sugar_cane" }, true);
+  removeRecipe({ id: "minecraft:crafting_shaped/paper" });
+  addAssembly("2x paper", "createdieselgenerators:wood_chip", [
+    addPressing("stick", "stick"),
+    addFilling("stick", "stick", "25x milk"),
+  ]);
+  addAssembly("3x paper", "createdieselgenerators:wood_chip", [
+    addPressing("stick", "stick"),
+    addFilling("stick", "stick", "25x water"),
+    addPressing("stick", "stick"),
+    addFilling("stick", "stick", "75x water"),
+    addPressing("stick", "stick"),
+  ]);
 }
 if (feature("Chest recipes")) {
   addShaped("chest", ["###", "# #", "###"], { "#": "#planks" });
@@ -68,10 +79,17 @@ if (feature("Bee duping flowers and saplings")) {
     flower = flower.id;
     addInfusion("2x " + flower, flower, manaCost, "bee_nest[honey_level=5]");
   });
-  Ingredient.of("#minecraft:saplings").stacks.forEach((sapling) => {
-    sapling = sapling.id;
-    addInfusion("2x " + sapling, sapling, manaCost, "bee_nest[honey_level=5]");
-  });
+  if (!feature("Remove saplings")) {
+    Ingredient.of("#minecraft:saplings").stacks.forEach((sapling) => {
+      sapling = sapling.id;
+      addInfusion(
+        "2x " + sapling,
+        sapling,
+        manaCost,
+        "bee_nest[honey_level=5]"
+      );
+    });
+  }
 }
 if (feature("prismarine_crystals removed from mobdrop")) {
   // <entitytype:minecraft:guardian>.addLootModifier("remove_prismarine_crystals_g", CommonLootModifiers.remove(<item:minecraft:prismarine_crystals>));
@@ -108,7 +126,7 @@ if (feature("Ghast tear")) {
 }
 if (feature("Netherrack and nether_brick")) {
   addCrushing(
-    ["brick %50", "netherrack %25", "nether_wart %10"],
+    ["copper_ingot %40", "netherrack %25", "nether_wart %10"],
     "nether_brick"
   );
   // addBlockExplode('netherrack', 'red_nether_bricks')
@@ -252,16 +270,22 @@ if (feature("Endstone from cheese")) {
   addCompacting("end_stone", "9x kubejs:fermented_blob", temperature.heated);
 }
 
-if (feature("Item frame recipes")) {
-  removeRecipe({ id: "minecraft:item_frame" });
-  addShapeless("item_frame", ["stick", "stick", "stick", "#forge:canvasables"]);
-}
+// if (feature("Item frame recipes")) {
+//   removeRecipe({ id: "minecraft:item_frame" });
+//   addShapeless("item_frame", ["stick", "stick", "stick", "#forge:canvasables"]);
+// }
 
 if (feature("Sugar recipe tweaks")) {
   removeRecipe({ id: "minecraft:sugar_from_sugar_cane" });
+  removeRecipe({ id: "minecraft:sugar_from_honey_bottle" });
   removeRecipe({ id: "create:milling/sugar_cane" });
   addMilling("sugar %25", "sugar_cane");
   addCrushing(["sugar %10", "lime_dye %1"], "sugar_cane");
+  addMixing(
+    ["3x sugar", "3x sugar %50"],
+    "250mb create:honey",
+    temperature.heated
+  );
 }
 
 if (feature("Magma block to lava")) {
@@ -277,41 +301,50 @@ if (feature("Slime from magmablock")) {
   addItemApplication("slime_block", "magma_block", "lime_dye");
 }
 
-if (feature("Fertilizer into water")) {
-  addToTag("forge:squeezables/1", [
+if (feature("Fertilizer into water and organic mass")) {
+  addToTag("forge:squeezables/seeds", [
     "minecraft:wheat_seeds",
     "minecraft:melon_seeds",
     "minecraft:pumpkin_seeds",
     "minecraft:beetroot_seeds",
-    "minecraft:cactus",
-    "minecraft:bamboo",
+    // "minecraft:cactus",
+    // "minecraft:bamboo",
   ]);
-  addToTag("forge:squeezables/2", [
-    "minecraft:apple",
-    "minecraft:beetroot",
-    "minecraft:carrot",
-    "minecraft:potato",
-    "minecraft:chorus_fruit",
-    "minecraft:sweet_berries",
-    "minecraft:melon_slice",
+  addToTag("forge:squeezables/poor", [
+    "quark:sugar_cane_block",
+    "quark:bamboo_block",
+    "quark:cactus_block",
   ]);
-  addToTag("forge:squeezables/3", ["minecraft:pumpkin"]);
+  addToTag("forge:squeezables/rich", [
+    "quark:apple_crate",
+    "quark:beetroot_crate",
+    "quark:carrot_crate",
+    "quark:potato_crate",
+    "quark:chorus_fruit_block",
+    "quark:berry_sack",
+    "minecraft:pumpkin",
+  ]);
   removeRecipe({ id: "createdieselgenerators:compacting/plant_oil" });
-  addCompacting("25mb kubejs:organic_mass", "#forge:squeezables/1");
-  addCompacting("100mb kubejs:organic_mass", "#forge:squeezables/2");
-  addCompacting("125mb kubejs:organic_mass", "minecraft:poisonous_potato");
-  addCompacting("200mb kubejs:organic_mass", "#forge:squeezables/3");
+  addCompacting(
+    ["50mb kubejs:organic_mass", "10mb createdieselgenerators:plant_oil"],
+    "#forge:squeezables/seeds"
+  );
+  addCompacting(
+    "50mb createdieselgenerators:plant_oil",
+    "#forge:squeezables/seeds",
+    temperature.heated
+  );
+  addCompacting("100mb kubejs:organic_mass", "minecraft:poisonous_potato");
+  addCompacting("250mb kubejs:organic_mass", "#forge:squeezables/poor");
+  addCompacting("500mb kubejs:organic_mass", "#forge:squeezables/rich");
   addDistillation(
     ["8mb water", "2mb createdieselgenerators:plant_oil"],
     "10mb kubejs:organic_mass"
   );
 
   addMixing(
-    [
-      "1mb create_enchantment_industry:experience",
-      "create:experience_nugget %10",
-    ],
-    ["250mb kubejs:organic_mass", "250mb milk"],
+    ["10mb create_enchantment_industry:experience"],
+    ["200mb kubejs:organic_mass", "50mb milk"],
     temperature.heated,
     500
   );
@@ -346,7 +379,7 @@ if (feature("Stone tools from livingrock")) {
 
 if (feature("Metal Trap door Recipe bigger")) {
   removeRecipe({ id: "minecraft:iron_trapdoor" });
-  addShaped("2x iron_trapdoor", ["###", "###"], { "#": "#forge:plates/iron" });
+  addStonecutting("3x iron_trapdoor", "iron_block");
 }
 if (feature("Soulsand from sand and brown")) {
   addBlockInteract("minecraft:soul_sand", "#forge:sand", "brown_dye");
@@ -355,29 +388,11 @@ if (feature("Soulsand from sand and brown")) {
 if (feature("Choros fruit from bamboo")) {
   addAlchemyRecipe("chorus_fruit", "bamboo");
 }
-if (feature("Gold is 4 nuggets")) {
-  removeRecipe({ id: "create:splashing/crushed_raw_gold" });
-  addSplashing(
-    ["4x gold_nugget", "ae2:large_quartz_bud %5"],
-    "create:crushed_raw_gold"
-  );
-
-  removeRecipe({ id: "minecraft:gold_ingot_from_nuggets" });
-  replaceShapeless("gold_ingot", ["4x minecraft:gold_nugget"]);
-
-  removeRecipe({ id: "minecraft:gold_nugget" });
-  addShapeless("4x minecraft:gold_nugget", "gold_ingot");
-
-  removeRecipe({ id: "create:crushing/nether_gold_ore" });
-  addCrushing(
-    ["8x gold_nugget", "create:experience_nugget %75", "netherrack %10"],
-    "nether_gold_ore"
-  );
-}
 
 if (feature("Remove furnaces")) {
   //removeItem('furnace')
   removeItem("blast_furnace");
+  removeItem("smoker");
 }
 
 if (feature("Choros flower from choros batch")) {
@@ -398,13 +413,23 @@ if (feature("Cactus from Choros fruite alchemy")) {
 
 if (feature("Elytra recipe")) {
   addShaped("elytra", ["lpl", "l l", "g g"], {
-    l: Ingredient.of("leather").or("silicon").or("dried_kelp"),
+    l: "#forge:canvasables",
     p: "purple_dye",
     g: "gray_dye",
   });
 }
-if (feature('Bush from grassblock and bonemeal')) {
-  addGrow('minecraft:grass', 'minecraft:grass_block', 'bone_meal', true)
+if (feature("Bush from grassblock and bonemeal")) {
+  addGrow(
+    ["minecraft:grass", "minecraft:tall_grass"],
+    "minecraft:grass_block",
+    "bone_meal",
+    true
+  );
+  addGrow("minecraft:tall_grass", "minecraft:grass", "bone_meal", true);
+}
+
+if (feature("Remove vanilla bonemeal from bones recipe")) {
+  removeRecipe({ id: "minecraft:bone_meal" });
 }
 // if (feature('Nether brick from chocolate and black')) {
 //     addAssembly('2x nether_brick', '#forge:ingots',[
@@ -414,5 +439,95 @@ if (feature('Bush from grassblock and bonemeal')) {
 //     ])
 // }
 
-// if (feature('Grass from grass block with shears accessibility recipe')) {
-// }
+if (feature("Rotten flesh purification")) {
+  addFilling(
+    "minecraft:leather",
+    "rotten_flesh",
+    Fluid.of("create:potion", 50, {
+      Potion: "minecraft:regeneration",
+    })
+  );
+}
+
+if (feature("Gray dye into black dye")) {
+  addSmelting("3x black_dye", "ptdye:gray_dye_block", 1, 400);
+}
+
+if (feature("Block of yellow to yellow")) {
+  addShapeless("9x minecraft:gold_ingot", "minecraft:gold_block");
+}
+
+if (feature("Netherack with healing potion and cobblestone")) {
+  addFilling(
+    "minecraft:netherrack",
+    "cobblestone",
+    Fluid.of("create:potion", 5, {
+      Potion: "minecraft:healing",
+    })
+  );
+}
+
+if (feature("Wax recipes")) {
+  addMixing("minecraft:honeycomb", ["9x ae2:silicon", "yellow_dye"]);
+  addMixing(
+    "minecraft:honeycomb",
+    ["3x ae2:silicon", "4x yellow_dye"],
+    temperature.heated
+  );
+  addFilling("minecraft:honeycomb", "ae2:silicon", "750x create:honey");
+}
+
+if (feature("Book back into paper")) {
+  addCutting("3x paper", "book");
+}
+
+if (feature("Spider eye with manapool")) {
+  addInfusion("spider_eye", "red_dye", 1250, "minecraft:grass_block");
+}
+
+if (feature("Blaze rod production")) {
+  addInfusion("blaze_rod", "stick", 20000, "minecraft:magma_block");
+}
+
+if (feature("Remove none oak boats")) {
+  removeItems([
+    "minecraft:acacia_boat",
+    "minecraft:birch_boat",
+    "minecraft:dark_oak_boat",
+    "minecraft:jungle_boat",
+    "minecraft:spruce_boat",
+    "minecraft:mangrove_boat",
+    "minecraft:acacia_chest_boat",
+    "minecraft:birch_chest_boat",
+    "minecraft:dark_oak_chest_boat",
+    "minecraft:jungle_chest_boat",
+    "minecraft:spruce_chest_boat",
+    "minecraft:mangrove_chest_boat",
+    "quark:blossom_boat",
+    "quark:blossom_chest_boat",
+  ]);
+  removeRecipe({ id: "minecraft:oak_boat" });
+  removeRecipe({
+    id: "quark:tweaks/crafting/utility/chest_boat/direct_oak_chest_boat",
+  });
+  addShaped("oak_boat", ["# #", "###"], { "#": "#planks" });
+  addShaped("oak_chest_boat", ["#c#", "###"], { "#": "#logs", "c": "chest" });
+}
+
+if (feature('Crushing or milling enchanted book gives experience')) {
+  addMilling(['2x paper', 'create:experience_nugget %55'], Item.of('minecraft:enchanted_book').weakNBT())
+  addCrushing(['paper %75','create:experience_nugget %75'], Item.of('minecraft:enchanted_book').weakNBT())
+  //todo fix this not showing in EMI
+}
+
+if (feature('Netherite gear regular recipes')) {
+  removeRecipe({ id: 'minecraft:netherite_helmet_smithing' })
+  removeRecipe({ id: 'minecraft:netherite_chestplate_smithing' })
+  removeRecipe({ id: 'minecraft:netherite_leggings_smithing' })
+  removeRecipe({ id: 'minecraft:netherite_boots_smithing' })
+  addShaped('netherite_helmet', ['nnn', 'n n'], { n: '#forge:ingots/netherite' })
+  addShaped('netherite_chestplate', ['n n', 'nnn', 'nnn'], { n: '#forge:ingots/netherite' })
+  addShaped('netherite_leggings', ['nnn', 'n n', 'n n'], { n: '#forge:ingots/netherite' })
+  addShaped('netherite_boots', ['n n', 'n n'], { n: '#forge:ingots/netherite' })
+  addShaped('netherite_sword', ['n', 'n', 's'], { n: '#forge:ingots/netherite', s: '#forge:rods' })
+}

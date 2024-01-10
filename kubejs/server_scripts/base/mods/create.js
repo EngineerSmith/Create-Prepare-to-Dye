@@ -21,17 +21,11 @@ if (feature("Remove vanilla honey bottle recipe")) {
 if (feature("Mechanical belt recipes")) {
   //kelp
   removeRecipe({ id: "create:crafting/kinetics/belt_connector" });
-  addShaped("2x create:belt_connector", ["lll", "lll"], {
-    l: "minecraft:dried_kelp",
-  });
   //leather
   addShaped("2x create:belt_connector", ["lll", "lll"], {
-    l: "#forge:leather",
+    l: "#forge:canvasables",
   });
   //silicon
-  addShaped("2x create:belt_connector", ["sss", "sss"], {
-    s: "#forge:silicon",
-  });
   //combined
   addShaped("4x create:belt_connector", ["lll", "sss", "kkk"], {
     l: "#forge:leather",
@@ -92,16 +86,6 @@ if (feature("Cogs")) {
   addShapeless("create:cogwheel", "create:large_cogwheel");
   addStonecutting("create:cogwheel", "create:large_cogwheel");
   addStonecutting("create:large_cogwheel", "create:cogwheel");
-  addItemApplication(
-    "create:large_cogwheel",
-    "create:cogwheel",
-    "#forge:tools/axes"
-  );
-  addItemApplication(
-    "create:cogwheel",
-    "create:large_cogwheel",
-    "#forge:tools/axes"
-  );
 }
 
 if (feature("Application recipes")) {
@@ -119,7 +103,7 @@ if (feature("Replace golden sheet with brass one")) {
   addShaped("create:brown_toolbox", [" c ", "pCp", " l "], {
     c: "#forge:cogs",
     p: "#forge:plates",
-    l: "#forge:leather",
+    l: "#forge:canvasables",
     C: "#forge:chests",
   });
   removeItem("create:golden_sheet");
@@ -182,40 +166,17 @@ if (feature("Funnels and tunnels with silicon and leather")) {
   if (!feature("Remove crafting table recipes for devices")) {
     addShaped("2x create:andesite_funnel", ["a", "l"], {
       a: "create:andesite_alloy",
-      l: "leather",
-    });
-    addShaped("2x create:andesite_funnel", ["a", "l"], {
-      a: "create:andesite_alloy",
-      l: "#forge:silicon",
+      l: "#forge:canvasables",
     });
     addShaped("2x create:andesite_tunnel", ["aa", "ll"], {
       a: "create:andesite_alloy",
-      l: "leather",
-    });
-    addShaped("2x create:andesite_tunnel", ["aa", "ll"], {
-      a: "create:andesite_alloy",
-      l: "#forge:silicon",
+      l: "#forge:canvasables",
     });
 
     addShaped("2x create:brass_funnel", ["e", "a", "l"], {
       e: "create:polished_rose_quartz",
       a: "#forge:ingots/brass",
-      l: "#forge:silicon",
-    });
-    addShaped("2x create:brass_funnel", ["e", "a", "l"], {
-      e: "create:polished_rose_quartz",
-      a: "#forge:ingots/brass",
-      l: "leather",
-    });
-    addShaped("2x create:brass_tunnel", ["e ", "aa", "ll"], {
-      e: "create:polished_rose_quartz",
-      a: "#forge:ingots/brass",
-      l: "leather",
-    });
-    addShaped("2x create:brass_tunnel", ["e ", "aa", "ll"], {
-      e: "create:polished_rose_quartz",
-      a: "#forge:ingots/brass",
-      l: "#forge:silicon",
+      l: "#forge:canvasables",
     });
   }
 }
@@ -262,7 +223,6 @@ if (feature("nerf bonemeal from calcite")) {
   );
 }
 
-
 if (feature("piston pole and gantry shaft recipes")) {
   addShaped("8x create:piston_extension_pole", ["i", "s", "i"], {
     s: "stick",
@@ -278,7 +238,12 @@ if (feature("Remove old cogwheel recipe")) {
 }
 
 if (feature("White ingot from raw white ") /*&& !feature('No More Ingots')*/) {
-  addPressing("iron_ingot", ["raw_iron"]);
+  addPressing(
+    feature("Replace white ingot with white plate directly")
+      ? "create:iron_sheet"
+      : "minecraft:iron_ingot",
+    ["raw_iron"]
+  );
   addPressing("gold_ingot", ["raw_gold"]);
   addPressing("copper_ingot", ["raw_copper"]);
 }
@@ -294,8 +259,41 @@ if (feature("Metal gridder no gray ingot")) {
   });
 }
 
+if (feature("Monorail track alternate recipe")) {
+  removeRecipe({ id: "railways:sequenced_assembly/track_monorail" });
+  addAssembly(
+    ["32x railways:track_monorail"],
+    "create:metal_girder",
+    [
+      addDeploying(
+        "create:metal_girder",
+        "create:metal_girder",
+        "create:metal_girder"
+      ),
+    ],
+    16,
+    "create:incomplete_track"
+  );
+}
 if (feature("Blaze is capturable")) {
   ServerEvents.tags("entity_type", (event) => {
     event.add("create:blaze_burner_capturable", ["more_babies:blaze"]);
   });
+}
+
+if (feature('Block of brass is made with plates instead of ingots')) {
+  removeRecipe({ id: 'create:crafting/materials/brass_block_from_compacting' })
+  addShaped('create:brass_block', ['ppp', 'ppp', 'ppp'], {
+    p: '#forge:plates/brass'
+  })
+  addShapeless('9x create:brass_sheet', 'create:brass_block')
+}
+
+if (feature('Sugar to white dye')) {
+  addMixing('white_dye', ['4x sugar'], temperature.none)
+}
+
+if (feature('Cheaper blaze cake')) {
+  removeRecipe({ id: 'create:filling/blaze_cake' })
+  addFilling('create:blaze_cake', 'create:blaze_cake_base', '10x lava')  
 }

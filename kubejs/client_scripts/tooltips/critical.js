@@ -6,7 +6,7 @@ addTooltip(
 );
 addTooltip(
   "white_concrete_powder",
-  "Found abundantly on the planets surface, also seems that the _milk_ here, flowing or source, can be purified with _pure daisy_ to make _white powder_"
+  "Seems that the _milk_ here, flowing or source, can be purified with _pure daisy_ to make _white powder_"
 );
 addTooltip(
   "lava_bucket",
@@ -23,7 +23,7 @@ addTooltip(
 );
 addTooltip(
   "milk_bucket",
-  "Ever since the invention of modern _engines_, _milk_ has been the building block of civilizations, _rocket fuel for the masses._ Easy to produce, easy to consume, and tasty too! To acquire _milk_ you will need to find a _cow_ and interact with it using a _bucket_, either by hand or using a _deployer_"
+  "Ever since the invention of modern _engines_, _milk_ has been the building block of civilizations, _rocket fuel for the masses._ Easy to produce, easy to consume, and tasty too! To acquire _milk_ you will need to find a _cow_ and interact with it using a _bucket_, either by hand or using a _deployer_. The modern _cow_ can produce milk every _22 seconds_"
 );
 addTooltip(
   "cauldron",
@@ -42,12 +42,8 @@ addTooltip(
   "A completed intergalactic agreement, check it's uses (U by default) with your index module (EMI) to see what new trades await you in the mesh. Bound by the United SPACE consumer union plus plus treaty. Can (usually) be mixed in a _Mechanical Mixer_ to acquire more contracts. Or hanged on the wall, pretty piece of paper"
 );
 addTooltip(
-  "storagedrawers:oak_full_drawers_1",
-  "a drawer, type of drawer can be cycled through using the variant button (default R)"
-);
-addTooltip(
   "create:blaze_burner",
-  "A _blaze burner_, a device that can be used to power _mana pool_, Heating and Super-Heating _Basins_, _boilers_ and _distillation towers_ and can also be used as pretty lighting emitter. To acquire _blaze burner_ you will need to find an adult _blaze_ and catch it, unfortunately _blaze_ are not native to this planet, so _importing them from space may be needed_"
+  "A _blaze burner_, a device that can be used to power _mana pool_, Heating and Super-Heating _Basins_, _boilers_ and _distillation towers_ and can also be used as pretty lighting emitter. To acquire _blaze burner_ you will need to find a _blaze_ and catch it, unfortunately _blaze_ are not native to this planet, so _importing them from space may be needed_. Experts also say that it is possible to fabricate a _fell blaze_ with a _fell pumpkin_ and that it can work as a blaze alternative"
 );
 addTooltip("supplementaries:ash", "Ash is created when things burn down");
 
@@ -57,8 +53,7 @@ addTooltip('minecraft:bone_meal', 'An important accelerant for life, some say it
 
 addTooltip('createdieselgenerators:distillation_controller', 'The _Distillery Controller_ allows you to assemble a _Distillery_. Right click on the _tank structure_ you want to transform into a distillery, a controller will be used for each tank attached. Note that you need _one tank per output in addition to the one on the bottom_ that takes the input')
 
-addTooltip('create:mechanical_harvester', 'A device which _harvests crops_ when going over them, be carful though! _It will harvest them regardless of their growth stage_')
-// addTooltip('create:deployer', "")
+addTooltip('minecraft:egg', 'Feed a _seed_ to a _chicken_ to get an _egg_');
 
 addTooltip([
   'golden_pickaxe',
@@ -67,6 +62,13 @@ addTooltip([
   'golden_sword',
   'golden_hoe'
 ], 'Yellow tools are always outfitted with _Fortune_, widely used in production lines and slave mines')
+
+addTooltip([
+  'diamond_pickaxe',
+  'diamond_shovel',
+  'diamond_axe',
+  'diamond_hoe'
+], 'Light Blue tools are always outfitted with _Silk Touch_, used for collection of delicate minerals and in limb relocation surgeries')
 
 addTooltip([
   'oak_wood',
@@ -93,4 +95,16 @@ addTooltip([
   'dark_oak_log',
   'crimson_stem',
   'warped_stem',
-], 'Such a basic element, a building block for many things. This planet however does not seem too friendly to trees. _Expect to pay highly to get yours_, that, or... Maybe there is another way too?')
+  'botania:livingwood_log',
+  'botania:livingwood',
+  'botania:dreamwood_log',
+  'botania:dreamwood',
+  'botania:glimmering_livingwood_log',
+  'botania:glimmering_livingwood',
+  'botania:glimmering_dreamwood_log',
+  'botania:glimmering_dreamwood',
+  'quark:blossom_log',
+  'quark:blossom_wood',
+  'quark:stripped_blossom_log',
+  'quark:stripped_blossom_wood',
+], 'Such a basic element, a building block for many things. This planet however does not seem too friendly to trees, none can grow here. _Expect to pay highly to get yours_. It is also said that there are advanced methods that use _chorus fruit_ or _livingwood sticks_ that can also result in useable logs')

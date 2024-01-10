@@ -5,22 +5,18 @@
  * @param {*} item 
  */
 function removeItem(item) {
-    global.itemsToRemove.push(item)
-    // //add tooltip
-    // //remove recipes
+    itemsToRemove[Item.of(item).id] = true
     removeRecipe({ output: item })
     removeRecipe({ input: item })
-    //remove tags from item
-    //hide
     ServerEvents.tags('item', event => {
         event.removeAllTagsFrom(item)
         event.add('c:hidden_from_recipe_viewers', item)
+        event.add('c:removed', item)
 	})
 }
 
 function removeAllRecipesForItem(item) {
     removeRecipe({ output: item })
-    global.itemsToRemove.push(item)
 }
 function removeAndReplace(item, withItem, alsoTags) {
     //replace in recipes
@@ -36,15 +32,4 @@ function removeItems(items) {
     items.forEach(item => {
         removeItem(item)
     });
-}
-function hideItem(item) {
-    global.itemsToHide.push(item)
-}
-function hideItems(items) {
-    items.forEach(item => {
-        removeItem(item)
-    });
-}
-function hideRecipeType(cat) {
-    global.categoriesToHide.push(cat)
 }

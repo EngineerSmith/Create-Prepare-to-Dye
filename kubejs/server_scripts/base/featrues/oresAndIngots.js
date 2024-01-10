@@ -45,6 +45,35 @@ if (feature('Ores from dyes')) {
     // addCompacting('raw_iron', ['4x #forge:dyes', '750mb milk'])
 }
 
+if (feature('Raw white, orange and yellow produce less xp in crushing wheels')) {
+    removeRecipe({ id: 'create:crushing/raw_iron' })
+    removeRecipe({ id: 'create:crushing/raw_copper' })
+    removeRecipe({ id: 'create:crushing/raw_gold' })
+    addCrushing(['create:crushed_raw_iron', 'create:experience_nugget %10'], 'raw_iron')
+    addCrushing(['create:crushed_raw_copper', 'create:experience_nugget %20'], 'raw_copper')
+    addCrushing(['create:crushed_raw_gold', 'create:experience_nugget %40'], 'raw_gold')
+}
+if (feature('Milling recipes for raw white, orange and yellow')) {
+    addMilling(['create:crushed_raw_iron','create:crushed_raw_iron %5' ], 'raw_iron')
+    addMilling(['create:crushed_raw_copper','create:crushed_raw_copper %5' ], 'raw_copper')
+    addMilling(['create:crushed_raw_gold','create:crushed_raw_gold %5' ], 'raw_gold')
+}
+if (feature('Milling recipes for crushed white, orange and yellow')) {
+    addMilling('5x iron_nugget', 'create:crushed_raw_iron')
+    addMilling('8x create:copper_nugget', 'create:crushed_raw_copper')
+    if (feature('Gold is 4 nuggets')) {
+        addMilling(['3x gold_nugget', 'gold_nugget %50'], 'create:crushed_raw_gold')
+    }else{
+        addMilling('8x gold_nugget', 'create:crushed_raw_gold')
+    }
+}
+
+if (feature('Nerf nugget output of washing crushed stuff')) {
+    removeRecipe({ id: 'create:splashing/crushed_raw_iron' })
+    addSplashing(['5x iron_nugget', 'redstone %50'], 'create:crushed_raw_iron')
+    removeRecipe({ id: 'create:splashing/crushed_raw_copper' })
+    addSplashing(['7x create:copper_nugget', 'clay_ball %50'], 'create:crushed_raw_copper')
+}
 if (feature('Ore processing')) {
     removeRecipe({ id: 'create:crushing/coal_ore' })
     removeRecipe({ id: 'create:crushing/deepslate_coal_ore' })
@@ -57,13 +86,13 @@ if (feature('Ore processing')) {
 
     addMilling(['2x create:crushed_raw_iron', 'create:crushed_raw_iron %75'], '#forge:ores/iron')
 
-    addMilling('5x create:crushed_raw_copper', '#forge:ores/copper')
+    addMilling('6x create:crushed_raw_copper', '#forge:ores/copper')
     // runic ore processing
     let crush_to_ingot = [
         {
             raw: 'minecraft:raw_iron',
             crushed: 'create:crushed_raw_iron',
-            ingot: 'minecraft:iron_ingot',
+            ingot: feature('Replace white ingot with white plate directly') ? 'create:iron_sheet' : 'minecraft:iron_ingot',
             waste: 'minecraft:milk'
         },
         {
@@ -87,7 +116,7 @@ if (feature('Ore processing')) {
 
 }
 if (feature('Dye into ore')) {
-    addFilling('minecraft:coal_ore', 'minecraft:stone', 'create_enchantment_industry:ink')
+    addFilling('minecraft:coal_ore', 'minecraft:stone', '200x create_enchantment_industry:ink')
 }
 if (feature('Gold')) {
     removeItem('gold_ore')
@@ -99,8 +128,8 @@ if (feature('Gold')) {
     // addAssembly(['gold_nugget %1', 'white_dye %3', 'yellow_dye %3', 'red_dye %3'], 'egg', [
     //     addFilling('', '', '250x kubejs:acid')//replace with kjs acid
     // ])
-    addCrushing(['gold_nugget %3', 'red_dye %3', 'feather %3'], 'egg')
-    addMilling('gold_nugget %5', 'egg')
+    addCrushing(['red_dye %5','yellow_dye %15', 'feather %15'], 'egg')
+    addMilling('yellow_dye %20', 'egg')
     addItemApplication('minecraft:raw_gold_block', ['minecraft:honeycomb_block', '#forge:ingots/terrasteel'])
     removeRecipe({ id: 'create:splashing/red_sand' })
     addSplashing(['dead_bush %5','red_dye %15'], 'red_sand')
@@ -110,6 +139,8 @@ if (feature('Remove diamond ore')) {
 }
 if (feature('Remove emerald ore')) {
     removeItem('emerald_ore')
+    removeRecipe({ id: 'create:smelting/zinc_ingot_from_ore' })
+    removeRecipe({ id: 'create:blasting/zinc_ingot_from_ore' })
     addAssembly(['emerald %25', 'green_dye %3', '2x green_dye %3', 'coal %2', 'diamond %2'], 'diamond', [
         addDeploying('emerald', 'diamond', 'green_dye'),
         addFilling('emerald', 'diamond', '27x create_enchantment_industry:experience')
@@ -162,7 +193,7 @@ if (feature('Andesite_alloy')) {
         addFilling('create:andesite_alloy','#forge:ingots', '100x create_enchantment_industry:ink'),
         addFilling('create:andesite_alloy','#forge:ingots', '100x minecraft:milk')
     ])
-    addElvenTrade('8x create:andesite_alloy', ['2x #forge:ingots/manasteel', 'andesite', '4x bread'])
+    addElvenTrade('8x create:andesite_alloy', ['2x #forge:ingots/manasteel', 'andesite', '4x #forge:meat'])
 }
 if (feature('Brass is gold')) {
     addMixing('2x gold_ingot', ['#forge:ingots/iron', '#forge:ingots/copper'], temperature.heated)
@@ -189,7 +220,7 @@ if (feature('Lapis')) {
     //     <item:minecraft:lapis_ore>.murdurFamily();
     //     Orechid.main.removeOreWeight(<blockstate:minecraft:lapis_ore>);
     removeItem('lapis_ore')
-    addCompacting('lapis_lazuli', '2x #forge:dusts', temperature.heated,undefined,undefined,'1000x water')
+    addCompacting('lapis_lazuli', ['2x #forge:dusts','500mb water'])
     //remove from orechid
     // addFluidTransomItem('2x lapis_lazuli', ['#forge:dyes', '#forge:lime'])
     // addFluidTransomItem('2x lapis_lazuli', '#forge:dusts/mana')
@@ -212,4 +243,23 @@ if (feature('slime from dough and lime')) {
 // // console.log('^'+Block.getBlock('minecraft:stone').defaultBlockState().asState().properties['hardness'].value)
 if (feature('Replace bricks with copper (orange ingot)')) {
     removeAndReplace('minecraft:brick', '#forge:ingots/copper')
+}
+
+if (feature('Ore crushing does not give cobblestone')) {
+    removeRecipe({ id: "create:crushing/copper_ore" })
+    removeRecipe({ id: "create:crushing/redstone_ore" })
+    addCrushing([
+        '6x redstone',
+        'redstone 50%',
+        'create:experience_nugget %70'
+    ], 'redstone_ore')
+    addCrushing([
+        '5x create:crushed_raw_copper',
+        'create:crushed_raw_copper 50%',
+        'create:experience_nugget %70'
+    ], 'copper_ore')
+}
+
+if (feature('Redstone ore outputs more direct redstone in mill')) {
+    addMilling('7x redstone', 'redstone_ore')
 }
