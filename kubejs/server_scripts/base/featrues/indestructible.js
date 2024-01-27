@@ -16,15 +16,3 @@ EntityEvents.spawned(event => {
         event.entity.age = 2147483647;
     }
 })
-
-ItemEvents.rightClicked("create:super_glue", (event) => {
-    event.item.setDamageValue(0)
-})
-
-BlockEvents.rightClicked((event) => {
-    if (event.getItem().id != "create:super_glue")
-        return
-    event.server.scheduleInTicks(2, (_) => {
-        event.item.setDamageValue(0)
-    })
-})
