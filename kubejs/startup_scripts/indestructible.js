@@ -14,8 +14,13 @@ let indestructibleItems = [
 indestructibleItems.concat(
     Ingredient.of('#forge:indestructible').itemIds
 )
+
 ItemEvents.modification((event) => {
     event.modify(indestructibleItems, (item) => {
         item.setFireResistant(true);
+    });
+
+    event.modify("create:super_glue", (item) => {
+        item.maxDamage = 10000;
     });
 });
